@@ -3,7 +3,7 @@ import axios from "axios";
 class Auth {
   constructor() {
     this.auth = axios.create({
-      baseURL: "http://localhost:5000",
+      baseURL: "http://localhost:5666", // maybe use env values here :|
       withCredentials: true
     });
   }
@@ -11,7 +11,7 @@ class Auth {
   signup({ username, password }) {
     return this.auth
       .post("/auth/signup", { username, password })
-      .then(({ data }) => data);
+      .then(({ data }) => data); // taking data out of response object with destructuring
     // .then((response) => response.data);
   }
 
@@ -23,8 +23,8 @@ class Auth {
   }
 
   logout() {
-    return this.auth.post("/auth/logout", {}).then(({ data }) => data);
-    // return this.auth.post("/auth/logout", {}).then((response) => response.data);
+    return this.auth.get("/auth/logout", {}).then(({ data }) => data);
+    // return this.auth.get("/auth/logout", {}).then((response) => response.data);
   }
 
   me() {

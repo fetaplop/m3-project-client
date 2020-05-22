@@ -1,7 +1,14 @@
 import React from 'react';
-import axios from 'axios';
 
-const { Consumer, Provider } = React.createContext();
+import authService from "./auth-service";
+const {Consumer, Provider} = React.createContext();
+
+
+// CHECK THE PORTS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// authService
+//       .signup({ firstName, lastName, email, password })
+//       .then(user => this.setState({ isLoggedin: true, user }))
+//       .catch(err => console.log(err) );
 
 
 
@@ -17,6 +24,7 @@ function withAuth(WrappedComponent) {
             user={valueFromProvider.user}
             isLoggedIn={valueFromProvider.isLoggedIn}
             isLoading={valueFromProvider.isLoading}
+            errorMessage={valueFromProvider.errorMessage}
             login={valueFromProvider.login}
             signup={valueFromProvider.signup}
             logout={valueFromProvider.logout}
@@ -31,54 +39,65 @@ class AuthProvider extends React.Component {
   state = {
     user: null,
     isLoggedIn: false,
-    isLoading: true
+    isLoading: true,
+    errorMessage: null
   }
 
   componentDidMount() {
     // When app and AuthProvider load for the first time
     // make a call to the server '/me' and check if user is authenitcated
-    axios.get('http://localhost:5000/auth/me', { withCredentials: true })
-      .then((response) => {
-        const user = response.data;
-        this.setState({ isLoggedIn: true, isLoading: false, user });
+    // axios.get('http://localhost:5666/auth/me', { withCredentials: true })
+    authService.me()
+      .then((user) => {
+        this.setState({isLoggedIn: true, isLoading: false, user});
       })
-      .catch((err) => this.setState({ isLoggedIn: false, isLoading: false, user: null }));
+      .catch((err) => this.setState({isLoggedIn: false, isLoading: false, user: null}));
   }
 
   login = (username, password) => {
-    axios.post('http://localhost:5000/auth/login', { username, password }, { withCredentials: true })
-      .then((response) => {
-        const user = response.data;
-        this.setState({ isLoggedIn: true, isLoading: false, user });
+    authService.login({username, password})
+      // axios.post('http://localhost:5666/auth/login', { username, password }, { withCredentials: true })
+      .then((user) => {
+        this.setState({isLoggedIn: true, isLoading: false, user, errorMessage: null});
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err)
+        this.setState({isLoggedIn: false, isLoading: false, user: null, errorMessage: "Login failed"});
+      }); // we only consolelog this error but to change the RENDERING, we should 
+    // somehow^TM handle it
+    // cretae error object and check in views if it exists ?
   }
   signup = (username, password) => {
-    axios.post('http://localhost:5000/auth/signup', { username, password }, { withCredentials: true })
-      .then((response) => {
-        const user = response.data;
-        this.setState({ isLoggedIn: true, isLoading: false, user });
+    // axios.post('http://localhost:5666/auth/signup', { username, password }, { withCredentials: true })
+    authService.signup({username, password})
+      .then((user) => {
+        // const user = response.data; dont need this with authServices
+        this.setState({isLoggedIn: true, isLoading: false, user});
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err)
+        this.setState({isLoggedIn: false, isLoading: false, user: null, errorMessage: "Signup failed"})
+      });
   }
   logout = () => {
-    axios.get('http://localhost:5000/auth/logout', { withCredentials: true })
-      .then((response) => {
-        this.setState({ isLoggedIn: false, isLoading: false, user: null });
+    // axios.get('http://localhost:5666/auth/logout', { withCredentials: true })
+    authService.logout()
+      .then(() => {
+        this.setState({isLoggedIn: false, isLoading: false, user: null});
       })
       .catch((err) => console.log(err));
   }
 
   render() {
-    const { user, isLoggedIn, isLoading } = this.state;
-    const { login, signup, logout } = this;
+    const {user, isLoggedIn, isLoading, errorMessage} = this.state;
+    const {login, signup, logout} = this;
 
     return (
-      <Provider value={{ user, isLoggedIn, isLoading, login, signup, logout }}>
+      <Provider value={{user, isLoggedIn, isLoading, errorMessage, login, signup, logout}}>
         {this.props.children}
       </Provider>
     )
   }
 }
 
-export { withAuth, AuthProvider }
+export {withAuth, AuthProvider}

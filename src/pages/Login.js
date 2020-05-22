@@ -18,25 +18,43 @@ class Login extends Component {
     this.setState({ [name]: value });
   };
 
+  handleOk = event => {
+    this.setState({ errorMessage: null })
+  }
+
   render() {
     const { username, password } = this.state;
 
-    return (
-      <div>
-        <h1>Login</h1>
+    // if (this.props.errorMessage) {
+    //   return (
+    //   <div>
+    //     <h1> {this.props.errorMessage} </h1>
+    //     <button onClick={this.handleOk} > OK I GUESS </button>
 
-        <form onSubmit={this.handleFormSubmit}>
+    //   </div>)
+    // }
+      
+      return (
 
-          <label>Username:</label>
-          <input type="text" name="username" value={username} onChange={this.handleChange} />
+        
 
-          <label>Password:</label>
-          <input type="password" name="password" value={password} onChange={this.handleChange} />
+        <div>
+          <h1>Login</h1>
 
-          <input type="submit" value="Login" />
-        </form>
-      </div>
-    );
+          {this.props.errorMessage? <h1> {this.props.errorMessage} </h1> : null }
+  
+          <form onSubmit={this.handleFormSubmit}>
+  
+            <label>Username:</label>
+            <input type="text" name="username" value={username} onChange={this.handleChange} />
+  
+            <label>Password:</label>
+            <input type="password" name="password" value={password} onChange={this.handleChange} />
+  
+            <input type="submit" value="Login" />
+          </form>
+        </div>
+      );
   }
 }
 
