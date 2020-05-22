@@ -35,6 +35,7 @@ export default class Search extends Component {
                     <p>trying to display all stops here:</p>
                     {stops.map(stop => {               
                         return (
+                            // using stopCode as key since they will NEVER change unless I purge the whole DB
                             <h3 key={stop.stopCode}>{stop.name}</h3>
                         )
                         

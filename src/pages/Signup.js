@@ -25,7 +25,7 @@ class Signup extends Component {
       <div>
         <h1>Sign Up</h1>
 
-        {this.props.errorMessage? <h1> {this.props.errorMessage} </h1> : null }
+        {/* {this.props.errorMessage? <h1> {this.props.errorMessage} </h1> : null } */}
 
         <form onSubmit={this.handleFormSubmit}>
 

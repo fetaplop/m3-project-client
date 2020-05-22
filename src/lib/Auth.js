@@ -24,7 +24,7 @@ function withAuth(WrappedComponent) {
             user={valueFromProvider.user}
             isLoggedIn={valueFromProvider.isLoggedIn}
             isLoading={valueFromProvider.isLoading}
-            errorMessage={valueFromProvider.errorMessage}
+            //errorMessage={valueFromProvider.errorMessage}
             login={valueFromProvider.login}
             signup={valueFromProvider.signup}
             logout={valueFromProvider.logout}
@@ -40,7 +40,7 @@ class AuthProvider extends React.Component {
     user: null,
     isLoggedIn: false,
     isLoading: true,
-    errorMessage: null
+    //errorMessage: null
   }
 
   componentDidMount() {
@@ -58,11 +58,11 @@ class AuthProvider extends React.Component {
     authService.login({username, password})
       // axios.post('http://localhost:5666/auth/login', { username, password }, { withCredentials: true })
       .then((user) => {
-        this.setState({isLoggedIn: true, isLoading: false, user, errorMessage: null});
+        this.setState({isLoggedIn: true, isLoading: false, user});//, errorMessage: null
       })
       .catch((err) => {
         console.log(err)
-        this.setState({isLoggedIn: false, isLoading: false, user: null, errorMessage: "Login failed"});
+        this.setState({isLoggedIn: false, isLoading: false, user: null});//, errorMessage: "Login failed"
       }); // we only consolelog this error but to change the RENDERING, we should 
     // somehow^TM handle it
     // cretae error object and check in views if it exists ?
@@ -76,7 +76,7 @@ class AuthProvider extends React.Component {
       })
       .catch((err) => {
         console.log(err)
-        this.setState({isLoggedIn: false, isLoading: false, user: null, errorMessage: "Signup failed"})
+        this.setState({isLoggedIn: false, isLoading: false, user: null})//, errorMessage: "Signup failed"
       });
   }
   logout = () => {
@@ -89,13 +89,13 @@ class AuthProvider extends React.Component {
   }
 
   render() {
-    const {user, isLoggedIn, isLoading, errorMessage} = this.state;
+    const {user, isLoggedIn, isLoading} = this.state;//, errorMessage
     const {login, signup, logout} = this;
 
     return (
-      <Provider value={{user, isLoggedIn, isLoading, errorMessage, login, signup, logout}}>
+      <Provider value={{user, isLoggedIn, isLoading, login, signup, logout}}>
         {this.props.children}
-      </Provider>
+      </Provider>//, errorMessage this was after isLoading
     )
   }
 }

@@ -18,9 +18,9 @@ class Login extends Component {
     this.setState({ [name]: value });
   };
 
-  handleOk = event => {
-    this.setState({ errorMessage: null })
-  }
+  // handleOk = event => {
+  //   this.setState({ errorMessage: null })
+  // }
 
   render() {
     const { username, password } = this.state;
@@ -41,7 +41,7 @@ class Login extends Component {
         <div>
           <h1>Login</h1>
 
-          {this.props.errorMessage? <h1> {this.props.errorMessage} </h1> : null }
+          {/* {this.props.errorMessage? <h1> {this.props.errorMessage} </h1> : null } */}
   
           <form onSubmit={this.handleFormSubmit}>
   
