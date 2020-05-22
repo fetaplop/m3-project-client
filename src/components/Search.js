@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 
 import axios from "axios"
+import stopService from "../lib/stop-service"
 
 export default class Search extends Component {
 
@@ -11,12 +12,20 @@ export default class Search extends Component {
     } 
 
     componentDidMount() {
-        axios.get("http://localhost:5666/stops/")
-        .then( (response) => {
-            const serverData = response.data
-            console.log('serverData', serverData)
+        // 1) hard-coded version
+        // axios.get("http://localhost:5666/stops/")
+        // .then( (response) => {
+        //     const serverData = response.data
+        //     console.log('serverData', serverData)
+        //     this.setState({data: serverData})
+        // } )
+        // 2) using stopService
+        stopService.getAll()
+        .then( serverData => {
+            console.log('serverData with stopService:', serverData)
             this.setState({data: serverData})
-        } )
+        })
+
         .catch((err) => console.log("error while getting data from server",err))
     }
 
