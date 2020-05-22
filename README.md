@@ -29,6 +29,7 @@ This is an app that provides all the bus stops within Oulu region. A user can se
 - Display received data continuously on the bus stop page
 - Dark theme (as default)
 - Confirm if user really wants to delete their account to avoid accidents
+- Display error messages in frontend too for bad login/signup requests
 
 <br>
 
@@ -132,8 +133,8 @@ Stop model
 | POST        | `/auth/logout`              | (empty)                   | 204            | 400          | Logs out the user                    |
 | GET         | `/stops`                    |                           | 200            | 400          | Get all stops from DB                |
 | GET         | `/stops/:id`                | {id}                      | 200            | 400          | Show specific bus stop               |
-| PUT         | `/stops/:id/favourite`      | {id}                      | 200            | 400          | Add stop to user favourites array    |
-| PUT         | `/stops/:id/unfavourite`    | {id}                      | 200            | 400          | Delete stop from user favourites     |
+| POST        | `/stops/:id/favourite`      | {id}                      | 200            | 400          | Add stop to user favourites array    |
+| POST        | `/stops/:id/unfavourite`    | {id}                      | 200            | 400          | Delete stop from user favourites     |
 | GET         | `/user/favourites`          |                           | 200            | 400          | Show user's favourite bus stops      |
 | DELETE      | `/user/delete`              |                           | 201            | 400          | Delete user                          |
 
