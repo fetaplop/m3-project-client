@@ -1,8 +1,10 @@
 //axios.post('http://localhost:5666/auth/signup', { username, password }, { withCredentials: true })
 import React, { Component } from 'react';
+import {Link} from "react-router-dom"
 
 import axios from "axios"
 import stopService from "../lib/stop-service"
+import StopPage from '../pages/StopPage';
 
 export default class Search extends Component {
 
@@ -22,7 +24,7 @@ export default class Search extends Component {
         // 2) using stopService
         stopService.getAll()
         .then( serverData => {
-            console.log('serverData with stopService:', serverData)
+            console.log('serverData with stopService getAll me:', serverData)
             this.setState({data: serverData})
         })
 
@@ -45,7 +47,12 @@ export default class Search extends Component {
                     {stops.map(stop => {               
                         return (
                             // using stopCode as key since they will NEVER change unless I purge the whole DB
-                            <h3 key={stop.stopCode}>{stop.name}</h3>
+                            //<h3 key={stop.stopCode}>{stop.name}</h3>
+                            <div key={stop.stopCode}>
+                            <Link to={`/${stop._id}`} >
+                                <h4>{stop.name}</h4>
+                            </Link>
+                            </div> // tried to add this inside first Link tag after to={}:  passingstuff={stop} but did not work
                         )
                         
                     })}

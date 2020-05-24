@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Private from './pages/Private';
+import StopPage from './pages/StopPage';
 
 import PublicRoute from './components/PublicRoute';
 import PrivateRoute from './components/PrivateRoute';
@@ -23,6 +24,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           {/* <PublicRoute exact path="/:stopID"  component={Stop} /> use wikicountires as example!! */}
+          <PublicRoute exact path="/:id" component={StopPage} />
           
           <PublicRoute exact path="/signup" component={Signup} />
           <PublicRoute exact path="/login" component={Login} />

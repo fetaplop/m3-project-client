@@ -9,9 +9,16 @@ class Stop {
     }
 
     getAll() {
-        return this.stop("/stops")
+        return this.stop
+        .get("/stops")
         .then((response) => response.data)
         // so yeah no error handling here
+    }
+
+    getOne(id) {
+        return this.stop
+        .get(`/stops/${id}`)
+        .then((response) => response.data)
     }
 }
 
