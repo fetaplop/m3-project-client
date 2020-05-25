@@ -24,13 +24,13 @@ class Stop {
     // this one is a POST!
     save(id) {
         return this.stop
-        .post(`stops/${id}/save`) //"/:id/save"
+        .post(`/stops/${id}/save`) //"/:id/save"
         .then((response) => response.data)
     }
 
     unsave(id) {
         return this.stop
-        .post(`stops/${id}/unsave`)
+        .post(`/stops/${id}/unsave`)
         .then(response => response.data)
     }
 }

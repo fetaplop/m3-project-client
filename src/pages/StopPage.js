@@ -14,10 +14,29 @@ class StopPage extends Component {
         //isFave: undefined // should be bool
     }
 
-    handleLike() {
-        // send POST to server to add this stop to user faves
+    handleLike = () => {
+        // send POST to server to add or remove this stop from faves
         // use state: is it fave ? yes -> unsave in server : no -> save in server 
-        
+        const stopID = this.state.stop._id 
+        //console.log('its not ID though!!!!!!!!!!!!!!')
+        console.log('stopID', stopID)
+        if (this.state.isFave === false) { // if user has not liked already, like this stop!
+            stopService.save(stopID)
+            .then(saved => {
+                console.log('saved from handleLike()', saved)
+                this.setState({isFave: true})
+            } )
+        }
+        // let's be super explicit about it and use another if block:
+        if (this.state.isFave === true) {
+            stopService.unsave(stopID)
+            .then(unsaved => {
+                console.log('unsaved this stop from handleLike()', unsaved)
+                this.setState({isFave: false})
+            })
+        }
+
+
 
     }
 
@@ -71,7 +90,7 @@ class StopPage extends Component {
         stopService.getOne(id)
         .then(stopFromServer => {
             console.log('stopfromServer inside StopPage compoenntDid*Mount:', stopFromServer)
-            this.setState({stop: stopFromServer, isLoading: false})
+            this.setState({stop: stopFromServer, isLoading: false}) // !! using isLoading here? is it bad, can I even use it with stop-service?
         })
 
         
@@ -107,11 +126,13 @@ class StopPage extends Component {
                 <h1>heya this is {mystop.name} page</h1>
                 <p>buses servicing this stop: {} </p> 
                 {/* tried using spread to get the bus lines but nah dont work */}
-                {this.props.isLoggedIn? <button> Likeee </button> : <p>you cant like this </p> }
+                {this.props.isLoggedIn? <button> Likeee (you see this if ur logged in) </button> : <p>you cant like this </p> }
 
-                {this.state.isFave === null
+                { (this.state.isFave === null) // after loading favourites we set state as either true or false
                 ? <p> still loading favourites </p>
-                : (this.state.isFave? <p> is mah fave </p> : <p>not fave </p> )
+                : (this.state.isFave 
+                    ? <button onClick={this.handleLike} style={ {backgroundColor: 'green'} } >is mah fave, unlike?</button>
+                    : <button onClick={this.handleLike} style={ {backgroundColor: 'red'} }>not fave, wanna save? </button> )
 
             }
 

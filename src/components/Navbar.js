@@ -11,13 +11,18 @@ class Navbar extends Component {
     return (
       <nav className="navbar">
         <Link to={'/'} id='home-btn'>
-          <h4>Home</h4>
+          <h4>Search for stops</h4>
         </Link>
         {
           isLoggedIn
             ? <div>
               <p>{user.username}</p>
               <button onClick={logout}> Logout </button>
+              <br />
+                <Link to="/private">
+                  {' '}
+                  <button className="navbar-button">My Page</button>{' '}
+                </Link>
             </div>
             : (
               <>
@@ -30,6 +35,7 @@ class Navbar extends Component {
                   {' '}
                   <button className="navbar-button">Sign Up</button>{' '}
                 </Link>
+
               </>
             )}
       </nav>
