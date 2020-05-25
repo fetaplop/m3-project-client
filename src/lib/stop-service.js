@@ -20,6 +20,19 @@ class Stop {
         .get(`/stops/${id}`)
         .then((response) => response.data)
     }
+
+    // this one is a POST!
+    save(id) {
+        return this.stop
+        .post(`stops/${id}/save`) //"/:id/save"
+        .then((response) => response.data)
+    }
+
+    unsave(id) {
+        return this.stop
+        .post(`stops/${id}/unsave`)
+        .then(response => response.data)
+    }
 }
 
 const fetchStopDataFunctions = new Stop()
