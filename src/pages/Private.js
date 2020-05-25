@@ -5,7 +5,7 @@ class Private extends Component {
   render() {
     return (
       <div>
-        <h1>Private Route</h1>
+        <h1>Private Route, display my favourite stops here</h1>
         {
           this.props.isLoggedIn
             ? <h3>Username: {this.props.user.username}</h3>
