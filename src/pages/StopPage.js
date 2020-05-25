@@ -12,6 +12,11 @@ class StopPage extends Component {
         //isFave: undefined // should be bool
     }
 
+    // auth and user, should they be combined?
+    //user service should post save/unsave a stop. it should get what current favourites are? obviously delete user.
+    // can I save stuff from both user and auth to state? maybe it's good to have user favStops array in the (provider) state?
+    // what the hell is the relationship between Auth.js and auth-service?
+
     // the BIG QUESTION: how to make my stop only render after I got the data from my server??
     componentDidMount() {
         const {id} = this.props.match.params
@@ -56,6 +61,7 @@ class StopPage extends Component {
                 <h1>heya this is {mystop.name} page</h1>
                 <p>buses servicing this stop: {} </p> 
                 {/* tried using spread to get the bus lines but nah dont work */}
+                {this.props.isLoggedIn? <button> Likeee </button> : <p>you cant like this </p> }
             </div>
                 
         )
@@ -63,5 +69,5 @@ class StopPage extends Component {
     }
 }
 
-export default StopPage
-//export default withAuth(StopPage) tried if this changes the fact that StopPage fucks up both login and signup
+//export default StopPage
+export default withAuth(StopPage) // tried if this changes the fact that StopPage fucks up both login and signup

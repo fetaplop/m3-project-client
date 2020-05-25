@@ -49,7 +49,7 @@ export default class Search extends Component {
                             // using stopCode as key since they will NEVER change unless I purge the whole DB
                             //<h3 key={stop.stopCode}>{stop.name}</h3>
                             <div key={stop.stopCode}>
-                            <Link to={`/${stop._id}`} >
+                            <Link to={`/stops/${stop._id}`} >
                                 <h4>{stop.name}</h4>
                             </Link>
                             </div> // tried to add this inside first Link tag after to={}:  passingstuff={stop} but did not work

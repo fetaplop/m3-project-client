@@ -3,7 +3,7 @@ import axios from "axios";
 class Auth {
   constructor() {
     this.auth = axios.create({
-      baseURL: "http://localhost:5666", // maybe use env values here :|
+      baseURL: process.env.REACT_APP_API_URL, // maybe use env values here :| //(process.env.REACT_APP_API_URL + '/api/projects', body)
       withCredentials: true
     });
   }

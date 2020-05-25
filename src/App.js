@@ -24,10 +24,10 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           {/* <PublicRoute exact path="/:stopID"  component={Stop} /> use wikicountires as example!! */}
-          <PublicRoute exact path="/:id" component={StopPage} />
           
           <PublicRoute exact path="/signup" component={Signup} />
           <PublicRoute exact path="/login" component={Login} />
+          <Route exact path="/stops/:id" component={StopPage} />
           <PrivateRoute exact path="/private" component={Private} />
         </Switch>
       </div>
