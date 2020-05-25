@@ -48,7 +48,7 @@ class AuthProvider extends React.Component {
     // make a call to the server '/me' and check if user is authenitcated
     // axios.get('http://localhost:5666/auth/me', { withCredentials: true })
     authService.me()
-      .then((user) => {
+      .then((user) => { // maybe we want to get favStops at the same time and save them to the state (and update in StopPage)
         this.setState({isLoggedIn: true, isLoading: false, user});
       })
       .catch((err) => this.setState({isLoggedIn: false, isLoading: false, user: null}));
