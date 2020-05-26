@@ -1,6 +1,7 @@
 import React from 'react';
 
 import authService from "./auth-service";
+import userService from "./user-service";
 const {Consumer, Provider} = React.createContext();
 
 
@@ -28,6 +29,7 @@ function withAuth(WrappedComponent) {
             login={valueFromProvider.login}
             signup={valueFromProvider.signup}
             logout={valueFromProvider.logout}
+            deleteUser={valueFromProvider.deleteUser}
           />
         )}
       </Consumer>
@@ -84,16 +86,25 @@ class AuthProvider extends React.Component {
     authService.logout()
       .then(() => {
         this.setState({isLoggedIn: false, isLoading: false, user: null});
+        // can we set other stuff here as well? to fix that after login/logout teh faves show wrong?
       })
       .catch((err) => console.log(err));
   }
 
+  deleteUser = () => {
+    userService.delete()
+    .then(() => {
+      this.setState({isLoggedIn: false, isLoading: false, user: null})
+    })
+    .catch((err) => { console.log(err)} )
+  }
+
   render() {
     const {user, isLoggedIn, isLoading} = this.state;//, errorMessage
-    const {login, signup, logout} = this;
+    const {login, signup, logout, deleteUser} = this;
 
     return (
-      <Provider value={{user, isLoggedIn, isLoading, login, signup, logout}}>
+      <Provider value={{user, isLoggedIn, isLoading, login, signup, logout, deleteUser}}>
         {this.props.children}
       </Provider>//, errorMessage this was after isLoading
     )
