@@ -43,7 +43,7 @@ class StopPage extends Component {
     // what the hell is the relationship between Auth.js and auth-service?
 
     // the BIG QUESTION: how to make my stop only render after I got the data from my server??
-    componentDidMount() {
+    componentDidMount() { // this really eeds to be optimised better..
         const {id} = this.props.match.params
         console.log('id from componentDidMount:', id)
 
@@ -113,7 +113,7 @@ class StopPage extends Component {
 
         // console.log('buses', buses)
 
-        // FUCKING HELL THIS NOW RENDERS IN LOGIN AND SIGNUP WTF???
+        // FUCKING HELL THIS NOW RENDERS IN LOGIN AND SIGNUP WTF??? update! now only after logging out
         return (
             // (this.state.isLoading? <h2>still loading page...</h2>
             // : 

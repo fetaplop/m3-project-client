@@ -10,7 +10,8 @@ export default class Search extends Component {
 
     state = {
         data: [],
-        searchFor: ""
+        searchFor: "",
+        searchResults: []
     } 
 
     componentDidMount() {
@@ -35,38 +36,38 @@ export default class Search extends Component {
         let filteredStops = this.state.data.filter( stop => {
             return stop.name.toLowerCase().includes(text.toLowerCase())
         } )
+        this.setState({searchResults: filteredStops})
     }
 
     handleSearchInput = (e) => {
         let {value} = e.target;
-        console.log('value from search:', value)
-        //this.setState({searchFor: value, () => {this.search(value)}})
+        //console.log('value from search:', value) // it works! no need to log this anymore
+        this.setState({searchFor: value}, () => {this.search(value)})
     }
 
     render() {
-        const stops = this.state.data
+        const stopsearch = this.state.searchResults
         return (
             <div>
-                <form action="" method="get">
-                    <label>Search: </label>
-                {/* <label>Password:</label>
-            <input type="password" name="password" value={password} onChange={this.handleChange} /> */}
-            <button type="submit" >oikeesti tää ei ees mittään vaikka submit button onkin</button>
-                </form>
+
+                <label>Search: </label>
+                <input 
+                type="text" 
+                value={this.state.searchFor} 
+                onChange={this.handleSearchInput} 
+                placeholder="Search for stops" />
 
                 <div>
-                    <p>trying to display all stops here:</p>
-                    {stops.map(stop => {               
+                    <p>trying to display search results here:</p>
+                    {stopsearch.map(stop => {               
                         return (
                             // using stopCode as key since they will NEVER change unless I purge the whole DB
-                            //<h3 key={stop.stopCode}>{stop.name}</h3>
                             <div key={stop.stopCode}>
                             <Link to={`/stops/${stop._id}`} >
                                 <h4>{stop.name}</h4>
                             </Link>
                             </div> // tried to add this inside first Link tag after to={}:  passingstuff={stop} but did not work
                         )
-                        
                     })}
                 </div>
             </div>
