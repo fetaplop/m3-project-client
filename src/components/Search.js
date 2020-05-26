@@ -34,7 +34,7 @@ export default class Search extends Component {
 
     search = (text) => {
         let filteredStops = this.state.data.filter( stop => {
-            return stop.name.toLowerCase().includes(text.toLowerCase())
+            return stop.stop_name.toLowerCase().includes(text.toLowerCase())
         } )
         this.setState({searchResults: filteredStops})
     }
@@ -62,9 +62,9 @@ export default class Search extends Component {
                     {stopsearch.map(stop => {               
                         return (
                             // using stopCode as key since they will NEVER change unless I purge the whole DB
-                            <div key={stop.stopCode}>
+                            <div key={stop.stop_code}>
                             <Link to={`/stops/${stop._id}`} >
-                                <h4>{stop.name}</h4>
+                                <h4>{stop.stop_name}</h4>
                             </Link>
                             </div> // tried to add this inside first Link tag after to={}:  passingstuff={stop} but did not work
                         )

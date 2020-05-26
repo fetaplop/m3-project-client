@@ -49,9 +49,9 @@ class Private extends Component {
           this.state.userFaves !== null 
           ? (
             this.state.userFaves.map(stop => {
-              return ( 
-              <div key={stop.stopCode}> 
-                <Link to={`/stops/${stop._id}`}> {stop.name}, code {stop.stopCode} </Link> 
+              return ( // consider another key for this?
+              <div key={stop.stop_code}>
+                <Link to={`/stops/${stop._id}`}> {stop.stop_name}, code: {stop.stop_code} </Link> 
               </div> )
             })
             

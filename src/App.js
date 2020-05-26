@@ -13,8 +13,6 @@ import PublicRoute from './components/PublicRoute';
 import PrivateRoute from './components/PrivateRoute';
 
 
-
-
 class App extends Component {
   render() {
     return (

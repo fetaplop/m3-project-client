@@ -86,10 +86,10 @@ class StopPage extends Component {
  
         console.log('this.props.user from render', this.props.user)
         
-        let mystop = this.state.stop
-        console.log('mystop in render comign from this.state', mystop)
+        let thisStop = this.state.stop
+        console.log('thisStop in render comign from this.state', thisStop)
         console.log('this.state', this.state)
-        // let buses = mystop.busLines.map( bus => {
+        // let buses = thisStop.busLines.map( bus => {
         //     return `${bus}, ` })
         // console.log('buses', buses)
 
@@ -98,7 +98,7 @@ class StopPage extends Component {
             // (this.state.isLoading? <h2>still loading page...</h2>
             // : 
             <div>
-                <h1>{mystop.name}</h1>
+                <h1>{thisStop.stop_name}</h1>
                 <p>buses servicing this stop: {} </p> 
                 {/* tried using spread to get the bus lines but nah dont work */}
                 {this.props.isLoggedIn
