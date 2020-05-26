@@ -31,6 +31,18 @@ export default class Search extends Component {
         .catch((err) => console.log("error while getting data from server",err))
     }
 
+    search = (text) => {
+        let filteredStops = this.state.data.filter( stop => {
+            return stop.name.toLowerCase().includes(text.toLowerCase())
+        } )
+    }
+
+    handleSearchInput = (e) => {
+        let {value} = e.target;
+        console.log('value from search:', value)
+        //this.setState({searchFor: value, () => {this.search(value)}})
+    }
+
     render() {
         const stops = this.state.data
         return (

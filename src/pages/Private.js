@@ -13,6 +13,10 @@ class Private extends Component {
     // we have to get rid of ALL user data AND session. then we need to REDIRECT TO LOGIN
   }
 
+  componentWillUnmount() {
+    // could I use this?????
+  }
+
   componentDidMount() {
     userService.favourites()
     .then(arrayFromServer => {
