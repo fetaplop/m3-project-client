@@ -3,10 +3,16 @@ import { Link } from 'react-router-dom';
 import { withAuth } from './../lib/Auth'
 
 class Navbar extends Component {
+  
+  shouldComponentUpdate(nextProps) {
+    return (this.props.user !== nextProps.user)
+  }
+
   render() {
     // `user`, `logout`, `isLoggedIn` are coming from the AuthProvider 
     // and are injected by the withAuth HOC
     const { user, logout, isLoggedIn } = this.props;
+
 
     return (
       <nav className="navbar">

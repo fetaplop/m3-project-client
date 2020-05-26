@@ -9,7 +9,7 @@ class Private extends Component {
 
   state = {
     userFaves: null,
-    deleted: false // not great. How can I destroy the user state as well? 
+    // not great. How can I destroy the user state as well? 
     // we have to get rid of ALL user data AND session. then we need to REDIRECT TO LOGIN
   }
 
@@ -25,14 +25,15 @@ class Private extends Component {
     })
   }
 
-  deleteMe = () => {
-    return userService.delete()
-    .then( deleted => {
-        console.log('deleted user, hopefully');
-        console.log('this.props after delete', this.props)
-        this.setState({deleted: true})
-    })
-  }
+  // deleteMe = () => {
+  //   return userService.delete()
+  //   .then( deleted => {
+  //       console.log('deleted user, hopefully');
+  //       console.log('this.props after delete', this.props)
+  //       this.props.history.push("/")
+        
+  //   })
+  // }
 
   render() {
     return (
@@ -60,7 +61,7 @@ class Private extends Component {
 
         {
           this.props.isLoggedIn
-          ? <button onClick={this.deleteMe}> Delete user?</button> // <DeleteUser/>
+          ?  <button onClick={this.props.deleteUser}> Delete user?</button> // <DeleteUser/>
           : null
         }
         
