@@ -50,36 +50,36 @@ class StopPage extends Component {
             // trying to add state update here since now we don't get the stop displaying as public user
             this.setState({stop: stopFromServer})
             //this.setState({stop: stopFromServer, isLoading: false}) // !! using isLoading here? is it bad, can I even use it with stop-service?
-            userService.favourites()
+            
+            if (this.props.isLoggedIn) {
+
+                userService.favourites()
                 .then( userFavourites => {
-                console.log('userFavourites', userFavourites)
-                console.log('stopFromServer inside userFavourties, ', stopFromServer)
-                
-                let fave = false; // assume it's not favourite and then check
-                if (userFavourites.length > 0) 
-                {userFavourites.forEach(favstop => { // look for each stop in user's favourite stops
-                 console.log("the type of " + favstop._id + " is: " + typeof(favstop._id))
-                 console.log('the id from componentdid mountis this? ', id)
-                if (favstop._id === id) {
-                    console.log('we found a match')
-                    fave = true
-                }
+                    console.log('userFavourites', userFavourites)
+                    console.log('stopFromServer inside userFavourties, ', stopFromServer)
+                    
+                    let fave = false; // assume it's not favourite and then check
+                    if (userFavourites.length > 0) 
+                    {userFavourites.forEach(favstop => { // look for each stop in user's favourite stops
+                    console.log("the type of " + favstop._id + " is: " + typeof(favstop._id))
+                    console.log('the id from componentdid mountis this? ', id)
+                    if (favstop._id === id) {
+                        console.log('we found a match')
+                        fave = true
+                    }
                 })}
-            console.log('fave before setting state', fave)
-            this.setState({isFave: fave, stop: stopFromServer})
+                console.log('fave before setting state', fave)
+                this.setState({isFave: fave})
             })
             .catch(err => {
                 console.log('error from trying to update user likes, likely because we are not logged in', err)
             })
+            }
         })
         .catch(err => {
             console.log('err from StopService.GetOne in componentDidmount', err)
         })
         
-    }
-    shouldComponentUpdate(nextProps, nextState) {
-        // compare props with next props?
-        return (this.state.isFave !== nextState.isFave)
     }
     
     render() {

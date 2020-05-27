@@ -11,7 +11,8 @@ export default class Search extends Component {
     state = {
         data: [],
         searchFor: "",
-        searchResults: []
+        searchResults: [],
+        loading: true // USE REDUX!!!
     } 
 
     componentDidMount() {
@@ -26,7 +27,7 @@ export default class Search extends Component {
         stopService.getAll()
         .then( serverData => {
             console.log('serverData with stopService getAll me:', serverData)
-            this.setState({data: serverData})
+            this.setState({data: serverData, loading: false})
         })
 
         .catch((err) => console.log("error while getting data from server",err))
@@ -49,16 +50,23 @@ export default class Search extends Component {
         const stopsearch = this.state.searchResults
         return (
             <div>
+                {!this.state.loading
+                ?(
+                    <div>
+                    {/* <label>Search: </label> */}
+                    <input 
+                    type="text" 
+                    value={this.state.searchFor} 
+                    onChange={this.handleSearchInput} 
+                    placeholder="Search for stops" />
+                </div>
+                )
+                : <p>Loading data...</p>
+                }
 
-                <label>Search: </label>
-                <input 
-                type="text" 
-                value={this.state.searchFor} 
-                onChange={this.handleSearchInput} 
-                placeholder="Search for stops" />
 
                 <div>
-                    <p>trying to display search results here:</p>
+                    <p>search results:</p>
                     {stopsearch.map(stop => {               
                         return (
                             // using stopCode as key since they will NEVER change unless I purge the whole DB
