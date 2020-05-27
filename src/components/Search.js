@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom"
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
+import Card from 'react-bootstrap/Card';
 
 import stopService from "../lib/stop-service"
 import {connect} from "react-redux"
@@ -87,16 +88,23 @@ class Search extends Component {
                 : <p>Loading data...</p>
                 }
 
-
+{/* <Card>
+  <Card.Body>This is some text within a card body.</Card.Body>
+</Card> */}
 
                 <div>
                     {stopsearch.map(stop => {               
                         return (
                             // using stopCode as key since they will NEVER change unless I purge the whole DB
                             <div key={stop.stop_code}>
-                            <Link to={`/stops/${stop._id}`} >
-                                <h4>{stop.stop_name}</h4>
-                            </Link>
+                           <Card>
+                                <Card.Body style={{padding: "5px 10px"}}>
+                                    <Link to={`/stops/${stop._id}`} >
+                                        <h4>{stop.stop_name}</h4>
+                                    </Link>
+                                </Card.Body>
+                           </Card>
+
                             </div> // tried to add this inside first Link tag after to={}:  passingstuff={stop} but did not work
                         )
                     })}

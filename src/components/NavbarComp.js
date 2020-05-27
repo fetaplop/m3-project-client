@@ -74,7 +74,7 @@ class NavbarComp extends Component {
 
       
       <Nav.Item>
-      <Link onClick={this.props.logout}> <Button size="lg" variant="outline-info"> Logout </Button> </Link>
+       <Button onClick={this.props.logout} size="lg" variant="outline-info"> Logout </Button>
       </Nav.Item>
       </>
       

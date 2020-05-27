@@ -105,13 +105,18 @@ class StopPage extends Component {
             // (this.state.isLoading? <h2>still loading page...</h2>
             // : 
             <div class="stopContain">
+                <div class="stopRows">
+
+               
                 <h1>{thisStop.stop_name}</h1>
-                <p>buses servicing this stop: {} </p> 
+                <p>Stop code: {thisStop.stop_code} </p> 
+                <p>Zone: {thisStop.zone_id} </p> 
+                <p>Coord. {thisStop.stop_lat} N {thisStop.stop_lon} E </p> 
                 {/* tried using spread to get the bus lines but nah dont work */}
                 {this.props.isLoggedIn
                 ? (this.state.isFave 
-                    ? <button onClick={this.handleLike} style={ {backgroundColor: 'green'} } >is mah fave, unlike?</button>
-                    : <button onClick={this.handleLike} style={ {backgroundColor: 'red'} }>not fave, wanna save? </button> )
+                    ? <Button onClick={this.handleLike} style={ {backgroundColor: 'green'} } >is mah fave, unlike?</Button>
+                    : <Button onClick={this.handleLike} style={ {backgroundColor: 'red'} }>not fave, wanna save? </Button> )
                 : <p>Log in to save this stop to favourites </p> }
 
                 {/* <Card style={{ width: '18rem' }}>
@@ -125,7 +130,7 @@ class StopPage extends Component {
                 </Card.Body>
                 </Card> */}
 
-
+                </div>
             </div>
                 
         )    

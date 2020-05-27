@@ -1,3 +1,12 @@
 .stopContain {
-    padding: 10 10;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin: 10 10;
+}
+
+.stopRows {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
 }
