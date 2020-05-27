@@ -24,6 +24,7 @@ export default class Search extends Component {
         //     this.setState({data: serverData})
         // } )
         // 2) using stopService
+
         stopService.getAll()
         .then( serverData => {
             console.log('serverData with stopService getAll me:', serverData)
@@ -48,7 +49,7 @@ export default class Search extends Component {
 
     render() {
         const stopsearch = this.state.searchResults
-        return (
+        return ( // add bus animation!!
             <div>
                 {!this.state.loading
                 ?(
@@ -66,7 +67,6 @@ export default class Search extends Component {
 
 
                 <div>
-                    <p>search results:</p>
                     {stopsearch.map(stop => {               
                         return (
                             // using stopCode as key since they will NEVER change unless I purge the whole DB

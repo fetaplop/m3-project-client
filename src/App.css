@@ -20,6 +20,11 @@ button.navbar-button {
   border-radius: 3px;
 }
 
+.greeting h1 {
+  margin-top: 20px;
+  background-color: #686de0;
+}
+
 #home-btn {
   color: white;
   text-decoration: none;
