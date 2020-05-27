@@ -38,3 +38,17 @@ button.navbar-button {
   color: white;
   text-decoration: none;
 }
+
+.userForm {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+
+.userForm h1 {
+  margin: 10px 0px;
+}
+
+#link-login {
+  margin-top: 5%;
+}

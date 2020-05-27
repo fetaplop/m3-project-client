@@ -1,5 +1,11 @@
 import React, { Component } from "react";
 import { withAuth } from './../lib/Auth';
+import FormControl from 'react-bootstrap/FormControl';
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
+import '../App.css';
 
 class Login extends Component {
   state = { username: "", password: "" };
@@ -38,12 +44,13 @@ class Login extends Component {
 
         
 
-        <div>
+        <div class="userForm">
           <h1>Login</h1>
 
           {/* {this.props.errorMessage? <h1> {this.props.errorMessage} </h1> : null } */}
-  
-          <form onSubmit={this.handleFormSubmit}>
+
+          {/* this IS GUARANTEED TO WORK IF BOOTSTRAP FAILS: */}
+          {/* <form onSubmit={this.handleFormSubmit}>
   
             <label>Username:</label>
             <input type="text" name="username" value={username} onChange={this.handleChange} />
@@ -52,10 +59,35 @@ class Login extends Component {
             <input type="password" name="password" value={password} onChange={this.handleChange} />
   
             <input type="submit" value="Login" />
-          </form>
+          </form> */}
+
+          <Form onSubmit={this.handleFormSubmit}>
+          <Form.Group as={Row} controlId="formHorizontalEmail">
+            <Form.Label column sm={2}>
+              Username:
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Control type="text" name="username" value={username} onChange={this.handleChange}/>
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="formHorizontalPassword">
+            <Form.Label column sm={2} style={{textAlign: "center"}} >
+              Password:
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Control type="password" name="password" value={password} onChange={this.handleChange}/>
+            </Col>
+          </Form.Group>
+          <Button type="submit" value="Login">   Login     </Button>
+
+          </Form>
+
         </div>
       );
   }
 }
 
 export default withAuth(Login);
+
+

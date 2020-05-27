@@ -1,6 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from "react"; // why do we sometimes deconstruct?
 import { Link } from "react-router-dom";
 import { withAuth } from './../lib/Auth';
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
+import '../App.css';
 
 class Signup extends Component {
   state = { username: "", password: "" };
@@ -22,12 +27,14 @@ class Signup extends Component {
   render() {
     const { username, password } = this.state;
     return (
-      <div>
+      <div class="userForm">
         <h1>Sign Up</h1>
 
         {/* {this.props.errorMessage? <h1> {this.props.errorMessage} </h1> : null } */}
 
-        <form onSubmit={this.handleFormSubmit}>
+
+        {/* GUARANTEED TO WORK IF BOOTSRAP FAILS! */}
+        {/* <form onSubmit={this.handleFormSubmit}>
 
           <label>Username:</label>
           <input type="text" name="username" value={username} onChange={this.handleChange} />
@@ -36,10 +43,34 @@ class Signup extends Component {
           <input type="password" name="password" value={password} onChange={this.handleChange} />
 
           <input type="submit" value="Signup" />
-        </form>
+        </form> */}
 
-        <p>Already have account?</p>
-        <Link to={"/login"}> Login</Link>
+        <Form onSubmit={this.handleFormSubmit}>
+          <Form.Group as={Row} controlId="formHorizontalEmail">
+            <Form.Label column sm={2}>
+              Username:
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Control type="text" name="username" value={username} onChange={this.handleChange}/>
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="formHorizontalPassword">
+            <Form.Label column sm={2} style={{textAlign: "center"}} >
+              Password:
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Control type="password" name="password" value={password} onChange={this.handleChange}/>
+            </Col>
+          </Form.Group>
+          <Button type="submit" value="Signup">   Signup    </Button>
+
+          </Form>
+        <div id="link-login">
+        <p>Already have an account?</p>
+        <Link to={"/login"}> <Button> Login </Button> </Link>
+        </div>
+        
       </div>
     );
   }
