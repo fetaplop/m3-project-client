@@ -6,7 +6,7 @@ import {withAuth} from '../lib/Auth';
 import '../Stop.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-
+import {Link} from "react-router-dom"
 
 class StopPage extends Component {
 
@@ -117,7 +117,7 @@ class StopPage extends Component {
                 ? (this.state.isFave 
                     ? <Button onClick={this.handleLike} style={ {backgroundColor: 'green'} } >is mah fave, unlike?</Button>
                     : <Button onClick={this.handleLike} style={ {backgroundColor: 'red'} }>not fave, wanna save? </Button> )
-                : <p>Log in to save this stop to favourites </p> }
+                : <Link to="/login">Log in to save this stop to favourites </Link> }
 
                 {/* <Card style={{ width: '18rem' }}>
                 <Card.Body>
