@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { withAuth } from './../lib/Auth';
 import userService from "../lib/user-service"
 import {Link, Redirect} from "react-router-dom";
-import DeleteUser from "../components/DeleteUser";
+//import DeleteUser from "../components/DeleteUser";
+import '../App.css';
 
 
 class Private extends Component {
@@ -38,20 +39,28 @@ class Private extends Component {
   render() {
     return (
       <div>
-        <h1>Private Route, display my favourite stops here</h1>
+        
         {
           this.props.isLoggedIn
-            ? <h3>Username: {this.props.user.username}</h3>
+            ? <div class="greeting"> <h1 >Welcome, {this.props.user.username}!</h1> </div>
             : null
         }
-
+        
+        {/* {
+          <>
+          (this.state.userFaves.length !== 0)
+          ? <p> Your saved bus stops: </p>
+          : <p>You haven't saved any stops yet</p>
+          <>
+        } */}
+        
         {
           this.state.userFaves !== null 
           ? (
             this.state.userFaves.map(stop => {
-              return ( 
-              <div key={stop.stopCode}> 
-                <Link to={`/stops/${stop._id}`}> {stop.name}, code {stop.stopCode} </Link> 
+              return ( // consider another key for this?
+              <div class="search-field" key={stop.stop_code}>
+                <Link to={`/stops/${stop._id}`}> <h4>{stop.stop_name}, code: {stop.stop_code}</h4>  </Link> 
               </div> )
             })
             

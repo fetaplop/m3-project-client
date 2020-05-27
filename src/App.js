@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
 
-import Navbar from './components/Navbar';
+import NavbarComp from './components/NavbarComp';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
@@ -13,13 +13,11 @@ import PublicRoute from './components/PublicRoute';
 import PrivateRoute from './components/PrivateRoute';
 
 
-
-
 class App extends Component {
   render() {
     return (
-      <div className="container">
-        <Navbar />
+      <div>
+        <NavbarComp />
 
         <Switch>
           <Route exact path="/" component={Home} />

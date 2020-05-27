@@ -3,6 +3,9 @@ import stopService from "../lib/stop-service"
 import userService from "../lib/user-service"
 //import authService from "../lib/auth-service"
 import {withAuth} from '../lib/Auth';
+import '../Stop.css';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 
 class StopPage extends Component {
@@ -50,55 +53,59 @@ class StopPage extends Component {
             // trying to add state update here since now we don't get the stop displaying as public user
             this.setState({stop: stopFromServer})
             //this.setState({stop: stopFromServer, isLoading: false}) // !! using isLoading here? is it bad, can I even use it with stop-service?
-            userService.favourites()
+            
+            if (this.props.isLoggedIn) {
+
+                userService.favourites()
                 .then( userFavourites => {
-                console.log('userFavourites', userFavourites)
-                console.log('stopFromServer inside userFavourties, ', stopFromServer)
-                
-                let fave = false; // assume it's not favourite and then check
-                if (userFavourites.length > 0) 
-                {userFavourites.forEach(favstop => { // look for each stop in user's favourite stops
-                 console.log("the type of " + favstop._id + " is: " + typeof(favstop._id))
-                 console.log('the id from componentdid mountis this? ', id)
-                if (favstop._id === id) {
-                    console.log('we found a match')
-                    fave = true
-                }
+                    console.log('userFavourites', userFavourites)
+                    console.log('stopFromServer inside userFavourties, ', stopFromServer)
+                    
+                    let fave = false; // assume it's not favourite and then check
+                    if (userFavourites.length > 0) 
+                    {userFavourites.forEach(favstop => { // look for each stop in user's favourite stops
+                    console.log("the type of " + favstop._id + " is: " + typeof(favstop._id))
+                    console.log('the id from componentdid mountis this? ', id)
+                    if (favstop._id === id) {
+                        console.log('we found a match')
+                        fave = true
+                    }
                 })}
-            console.log('fave before setting state', fave)
-            this.setState({isFave: fave, stop: stopFromServer})
+                console.log('fave before setting state', fave)
+                this.setState({isFave: fave})
             })
             .catch(err => {
                 console.log('error from trying to update user likes, likely because we are not logged in', err)
             })
+            }
         })
         .catch(err => {
             console.log('err from StopService.GetOne in componentDidmount', err)
         })
         
     }
-    shouldComponentUpdate(nextProps, nextState) {
-        // compare props with next props?
-        return (this.state.isFave !== nextState.isFave)
-    }
     
     render() {
  
         console.log('this.props.user from render', this.props.user)
         
-        let mystop = this.state.stop
-        console.log('mystop in render comign from this.state', mystop)
+        let thisStop = this.state.stop
+        console.log('thisStop in render comign from this.state', thisStop)
         console.log('this.state', this.state)
-        // let buses = mystop.busLines.map( bus => {
+        // let buses = thisStop.busLines.map( bus => {
         //     return `${bus}, ` })
         // console.log('buses', buses)
 
         // FUCKING HELL THIS NOW RENDERS IN LOGIN AND SIGNUP WTF??? update! now only after logging out
+
+
+
+
         return (
             // (this.state.isLoading? <h2>still loading page...</h2>
             // : 
-            <div>
-                <h1>{mystop.name}</h1>
+            <div class="stopContain">
+                <h1>{thisStop.stop_name}</h1>
                 <p>buses servicing this stop: {} </p> 
                 {/* tried using spread to get the bus lines but nah dont work */}
                 {this.props.isLoggedIn
@@ -106,6 +113,18 @@ class StopPage extends Component {
                     ? <button onClick={this.handleLike} style={ {backgroundColor: 'green'} } >is mah fave, unlike?</button>
                     : <button onClick={this.handleLike} style={ {backgroundColor: 'red'} }>not fave, wanna save? </button> )
                 : <p>Log in to save this stop to favourites </p> }
+
+                {/* <Card style={{ width: '18rem' }}>
+                <Card.Body>
+                    <Card.Title>Card Title</Card.Title>
+                    <Card.Text>
+                    Some quick example text to build on the card title and make up the bulk of
+                    the card's content.
+                    </Card.Text>
+                    <Button variant="primary">Go somewhere</Button>
+                </Card.Body>
+                </Card> */}
+
 
             </div>
                 
