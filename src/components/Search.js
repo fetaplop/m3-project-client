@@ -1,18 +1,20 @@
 //axios.post('http://localhost:5666/auth/signup', { username, password }, { withCredentials: true })
 import React, { Component } from 'react';
 import {Link} from "react-router-dom"
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
 
-import axios from "axios"
 import stopService from "../lib/stop-service"
-import StopPage from '../pages/StopPage';
+import {connect} from "react-redux"
 
-export default class Search extends Component {
+
+class Search extends Component {
 
     state = {
-        data: [],
+        //data: [],
         searchFor: "",
         searchResults: [],
-        loading: true // USE REDUX!!!
+        //loading: true // USE REDUX!!!
     } 
 
     componentDidMount() {
@@ -23,19 +25,26 @@ export default class Search extends Component {
         //     console.log('serverData', serverData)
         //     this.setState({data: serverData})
         // } )
-        // 2) using stopService
 
+        // 2) using stopService AND redux
+
+    const stopsDataExists = (this.props.stopsData.length > 0)
+
+    if (stopsDataExists) {
+        return //dont try to get the data again!
+    }
         stopService.getAll()
         .then( serverData => {
             console.log('serverData with stopService getAll me:', serverData)
-            this.setState({data: serverData, loading: false})
+            this.props.addAllStops(serverData)
+            //this.setState({loading: false})
         })
 
         .catch((err) => console.log("error while getting data from server",err))
     }
 
-    search = (text) => {
-        let filteredStops = this.state.data.filter( stop => {
+    search = (text) => { // change this to consume data that redux provides
+        let filteredStops = this.props.stopsData.filter( stop => {
             return stop.stop_name.toLowerCase().includes(text.toLowerCase())
         } )
         this.setState({searchResults: filteredStops})
@@ -50,20 +59,34 @@ export default class Search extends Component {
     render() {
         const stopsearch = this.state.searchResults
         return ( // add bus animation!!
-            <div>
-                {!this.state.loading
+            <div class="search-field">
+                {(this.props.stopsData.length > 0)
                 ?(
-                    <div>
-                    {/* <label>Search: </label> */}
-                    <input 
-                    type="text" 
-                    value={this.state.searchFor} 
-                    onChange={this.handleSearchInput} 
-                    placeholder="Search for stops" />
-                </div>
+                    <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                            <InputGroup.Text id="basic-addon1">Search</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <FormControl
+                        placeholder="Search for bus stops by name"
+                        aria-label="Search"
+                        value={this.state.searchFor} 
+                        onChange={this.handleSearchInput}
+                        aria-describedby="basic-addon1"
+                        />
+                    </InputGroup>
+
+                // <div>
+                //     {/* <label>Search: </label> */}
+                //     <input 
+                //     type="text" 
+                //     value={this.state.searchFor} 
+                //     onChange={this.handleSearchInput} 
+                //     placeholder="Search for bus stops by name" />
+                // </div>
                 )
                 : <p>Loading data...</p>
                 }
+
 
 
                 <div>
@@ -82,3 +105,17 @@ export default class Search extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {stopsData: state}
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addAllStops: (stopsFromServer) => {
+            dispatch({type: "ADD_ALL_STOPS", payload: stopsFromServer})} // add stops to redux
+    }
+}
+
+// connect redux
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

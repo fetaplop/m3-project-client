@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import Button from 'react-bootstrap/Button';
+
+import '../App.css';
 
 import { withAuth } from './../lib/Auth';
 
@@ -55,24 +58,23 @@ class NavbarComp extends Component {
 
   return (
     <Navbar bg="dark" variant="dark">
-    <Nav 
-    activeKey="/"
-    >
+    <Nav className="nav" activeKey="/" >
       <Nav.Item>
-        <Nav.Link href="/"> Search for stops </Nav.Link>
+        <Link to="/"> <Button size="lg" variant="outline-info"> Search for stops </Button> </Link>
       </Nav.Item>
+      
 
       {isLoggedIn
       ? (
       <>
         <Nav.Item>
-        <Nav.Link href="/private" >My page</Nav.Link>
+        <Link to="/private" ><Button size="lg" variant="outline-info"> My page </Button></Link>
         </Nav.Item>
       
 
       
       <Nav.Item>
-      <Nav.Link onClick={this.props.logout}> Logout </Nav.Link>
+      <Link onClick={this.props.logout}> <Button size="lg" variant="outline-info"> Logout </Button> </Link>
       </Nav.Item>
       </>
       
@@ -83,11 +85,11 @@ class NavbarComp extends Component {
       : 
       <>
       <Nav.Item>
-        <Nav.Link href="/signup">Signup</Nav.Link>
+        <Link to="/signup"><Button size="lg" variant="outline-info"> Signup </Button></Link>
       </Nav.Item>
 
       <Nav.Item>
-         <Nav.Link href="/login">Login</Nav.Link>
+         <Link to="/login"><Button size="lg" variant="outline-info"> Login </Button></Link>
       </Nav.Item>
       </>
       }

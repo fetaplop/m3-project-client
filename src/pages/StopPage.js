@@ -3,6 +3,9 @@ import stopService from "../lib/stop-service"
 import userService from "../lib/user-service"
 //import authService from "../lib/auth-service"
 import {withAuth} from '../lib/Auth';
+import '../Stop.css';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 
 class StopPage extends Component {
@@ -94,10 +97,14 @@ class StopPage extends Component {
         // console.log('buses', buses)
 
         // FUCKING HELL THIS NOW RENDERS IN LOGIN AND SIGNUP WTF??? update! now only after logging out
+
+
+
+
         return (
             // (this.state.isLoading? <h2>still loading page...</h2>
             // : 
-            <div>
+            <div class="stopContain">
                 <h1>{thisStop.stop_name}</h1>
                 <p>buses servicing this stop: {} </p> 
                 {/* tried using spread to get the bus lines but nah dont work */}
@@ -106,6 +113,18 @@ class StopPage extends Component {
                     ? <button onClick={this.handleLike} style={ {backgroundColor: 'green'} } >is mah fave, unlike?</button>
                     : <button onClick={this.handleLike} style={ {backgroundColor: 'red'} }>not fave, wanna save? </button> )
                 : <p>Log in to save this stop to favourites </p> }
+
+                {/* <Card style={{ width: '18rem' }}>
+                <Card.Body>
+                    <Card.Title>Card Title</Card.Title>
+                    <Card.Text>
+                    Some quick example text to build on the card title and make up the bulk of
+                    the card's content.
+                    </Card.Text>
+                    <Button variant="primary">Go somewhere</Button>
+                </Card.Body>
+                </Card> */}
+
 
             </div>
                 

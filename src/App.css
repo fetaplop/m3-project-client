@@ -7,6 +7,8 @@ html, body {
   padding: 20px;;
 }
 
+nav {}
+
 nav.navbar { 
   display: flex;
   padding: 10px 20px;
@@ -22,7 +24,14 @@ button.navbar-button {
 
 .greeting h1 {
   margin-top: 20px;
-  background-color: #686de0;
+  margin-left: 2.5%;
+  /* background-color: #686de0; */
+}
+
+.search-field {
+  margin-top: 2.5%;
+  width: 50%;
+  margin-left: 2.5%;
 }
 
 #home-btn {
