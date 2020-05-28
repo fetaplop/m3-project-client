@@ -50,3 +50,9 @@ button.navbar-button {
 #link-login {
   margin-top: 5%;
 }
+
+#private button {
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+}

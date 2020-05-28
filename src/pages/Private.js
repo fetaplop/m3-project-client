@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { withAuth } from './../lib/Auth';
 import userService from "../lib/user-service"
 import {Link, Redirect} from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+
 //import DeleteUser from "../components/DeleteUser";
 import '../App.css';
 
@@ -38,7 +40,7 @@ class Private extends Component {
 
   render() {
     return (
-      <div>
+      <div id="private">
         
         {
           this.props.isLoggedIn
@@ -70,7 +72,7 @@ class Private extends Component {
 
         {
           this.props.isLoggedIn
-          ?  <button onClick={this.props.deleteUser}> Delete user?</button> // <DeleteUser/>
+          ? <Button variant="danger" onClick={this.props.deleteUser} > Delete user? </Button>// <DeleteUser/>
           : null
         }
         
