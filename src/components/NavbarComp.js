@@ -61,39 +61,31 @@ class NavbarComp extends Component {
     <Nav className="nav" activeKey="/" variant="pills" >
       <Nav.Item> 
         <NavLink to="/" activeClassName="active"> 
-        <Button size="lg" variant="outline-info"> Search for stops </Button>
+        <Button className="ml-1" size="lg" variant="outline-info"> Search for stops </Button>
         </NavLink>
       </Nav.Item>
-    
-      
-      {/* <NavLink to="blabla" activeClassName="active" exact>home</NavLink> */}  
 
       {isLoggedIn
       ? (
       <>
         <Nav.Item>
-        <Link to="/private" ><Button size="lg" variant="outline-info"> My page </Button></Link>
+        <Link to="/private" ><Button className="ml-1" size="lg" variant="outline-info"> My page </Button></Link>
         </Nav.Item>
       
-
-      
       <Nav.Item>
-       <Button onClick={this.props.logout} size="lg" variant="outline-info"> Logout </Button>
+       <Button className="ml-1" onClick={this.props.logout} size="lg" variant="outline-info"> Logout </Button>
       </Nav.Item>
       </>
       
-        /* <Nav.Item>
-          <Nav.Link eventKey="/logout" onClick={logout}> Logout </Nav.Link>
-        </Nav.Item> */
       )
       : 
       <>
       <Nav.Item>
-        <Link to="/signup"><Button size="lg" variant="outline-info"> Signup </Button></Link>
+        <Link to="/signup"><Button className="ml-1" size="lg" variant="outline-info"> Signup </Button></Link>
       </Nav.Item>
 
       <Nav.Item>
-         <Link to="/login"><Button size="lg" variant="outline-info"> Login </Button></Link>
+         <Link to="/login"><Button className="ml-1" size="lg" variant="outline-info"> Login </Button></Link>
       </Nav.Item>
       </>
       }
@@ -104,24 +96,5 @@ class NavbarComp extends Component {
 
 }
 
-/* <Nav
-  activeKey="/home"
-  onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
-  >
-  <Nav.Item>
-  <Nav.Link href="/home">Active</Nav.Link>
-  </Nav.Item>
-  <Nav.Item>
-    <Nav.Link eventKey="link-1">Link</Nav.Link>
-    </Nav.Item>
-  <Nav.Item>
-  <Nav.Link eventKey="link-2">Link</Nav.Link>
-  </Nav.Item>
-  <Nav.Item>
-  <Nav.Link eventKey="disabled" disabled>
-  Disabled
-    </Nav.Link>
-    </Nav.Item>
-  </Nav> */
 
   export default withAuth(NavbarComp);
