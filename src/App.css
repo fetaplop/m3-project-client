@@ -29,9 +29,7 @@ button.navbar-button {
 }
 
 .search-field {
-  margin-top: 2.5%;
-  width: 50%;
-  margin-left: 2.5%;
+  margin: auto 2.5%;
 }
 
 #home-btn {
