@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
@@ -58,11 +58,15 @@ class NavbarComp extends Component {
 
   return (
     <Navbar bg="dark" variant="dark">
-    <Nav className="nav" activeKey="/" >
-      <Nav.Item>
-        <Link to="/"> <Button size="lg" variant="outline-info"> Search for stops </Button> </Link>
+    <Nav className="nav" activeKey="/" variant="pills" >
+      <Nav.Item> 
+        <NavLink to="/" activeClassName="active"> 
+        <Button size="lg" variant="outline-info"> Search for stops </Button>
+        </NavLink>
       </Nav.Item>
+    
       
+      {/* <NavLink to="blabla" activeClassName="active" exact>home</NavLink> */}  
 
       {isLoggedIn
       ? (

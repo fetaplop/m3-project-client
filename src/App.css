@@ -28,6 +28,10 @@ button.navbar-button {
   /* background-color: #686de0; */
 }
 
+.greeting h4 {
+  margin-left: 2.5%;
+}
+
 .search-field {
   margin: auto 2.5%;
 }

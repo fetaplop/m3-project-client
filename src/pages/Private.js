@@ -44,7 +44,9 @@ class Private extends Component {
         
         {
           this.props.isLoggedIn
-            ? <div class="greeting"> <h1 >Welcome, {this.props.user.username}!</h1> </div>
+            ? <div class="greeting"> <h1 >Welcome, {this.props.user.username}!</h1>
+             { (this.state.userFaves !== null) && (this.state.userFaves.length !== 0) ? <h4>Here are your saved bus stops:</h4> : <h4> You haven't saved any bus stops yet! </h4> }
+             </div>
             : null
         }
         

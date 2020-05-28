@@ -115,8 +115,8 @@ class StopPage extends Component {
                 {/* tried using spread to get the bus lines but nah dont work */}
                 {this.props.isLoggedIn
                 ? (this.state.isFave 
-                    ? <Button onClick={this.handleLike} style={ {backgroundColor: 'green'} } >Remove from favourites?</Button>
-                    : <Button onClick={this.handleLike} style={ {backgroundColor: 'red'} }>not fave, wanna save? </Button> )
+                    ? <Button onClick={this.handleLike} variant="outline-danger" style={{backgroundColor: "pink"}} >Remove from favourites?</Button>
+                    : <Button onClick={this.handleLike} variant="outline-success" > not fave, wanna save? </Button> )
                 : <Link to="/login">Log in to save this stop to favourites </Link> }
 
                 {/* <Card style={{ width: '18rem' }}>
