@@ -5,7 +5,7 @@ import userService from "./user-service";
 const {Consumer, Provider} = React.createContext();
 
 
-// CHECK THE PORTS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// CHECK THE PORTS!!
 // authService
 //       .signup({ firstName, lastName, email, password })
 //       .then(user => this.setState({ isLoggedin: true, user }))
@@ -106,7 +106,7 @@ class AuthProvider extends React.Component {
     return (
       <Provider value={{user, isLoggedIn, isLoading, login, signup, logout, deleteUser}}>
         {this.props.children}
-      </Provider>//, errorMessage this was after isLoading
+      </Provider>//, errorMessage after isLoading
     )
   }
 }

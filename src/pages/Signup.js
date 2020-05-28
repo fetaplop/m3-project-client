@@ -30,8 +30,6 @@ class Signup extends Component {
       <div class="userForm">
         <h1>Sign Up</h1>
 
-        {/* {this.props.errorMessage? <h1> {this.props.errorMessage} </h1> : null } */}
-
 
         {/* GUARANTEED TO WORK IF BOOTSRAP FAILS! */}
         {/* <form onSubmit={this.handleFormSubmit}>

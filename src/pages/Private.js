@@ -4,7 +4,7 @@ import userService from "../lib/user-service"
 import {Link, Redirect} from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 
-//import DeleteUser from "../components/DeleteUser";
+//import DeleteUser from "../components/DeleteUser"; // moved delete function higher up!
 import '../App.css';
 
 
@@ -12,12 +12,11 @@ class Private extends Component {
 
   state = {
     userFaves: null,
-    // not great. How can I destroy the user state as well? 
-    // we have to get rid of ALL user data AND session. then we need to REDIRECT TO LOGIN
+
   }
 
   componentWillUnmount() {
-    // could I use this?????
+    // could I use this to ensure I'm showing user info immediately??
   }
 
   componentDidMount() {
@@ -49,14 +48,6 @@ class Private extends Component {
              </div>
             : null
         }
-        
-        {/* {
-          <>
-          (this.state.userFaves.length !== 0)
-          ? <p> Your saved bus stops: </p>
-          : <p>You haven't saved any stops yet</p>
-          <>
-        } */}
         
         {
           this.state.userFaves !== null 

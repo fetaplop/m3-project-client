@@ -3,8 +3,8 @@ import axios from "axios";
 class User {
     constructor() {
         this.user = axios.create({
-            baseURL: process.env.REACT_APP_API_URL, // maybe use env values here :|
-            withCredentials: true // is this needed??? some of these methods will need to know if a user is logged in
+            baseURL: process.env.REACT_APP_API_URL, // use env values here
+            withCredentials: true // need to investigate this further.. 
         })
     }
 

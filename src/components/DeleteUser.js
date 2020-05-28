@@ -2,6 +2,8 @@ import React from 'react'
 import userService from "../lib/user-service"
 import { Redirect } from 'react-router-dom';
 
+// not using this! moved deletion to Auth.js
+
 export default function DeleteUser() {
 
     const deleteMe = () => {

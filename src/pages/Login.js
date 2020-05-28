@@ -24,30 +24,13 @@ class Login extends Component {
     this.setState({ [name]: value });
   };
 
-  // handleOk = event => {
-  //   this.setState({ errorMessage: null })
-  // }
-
   render() {
     const { username, password } = this.state;
-
-    // if (this.props.errorMessage) {
-    //   return (
-    //   <div>
-    //     <h1> {this.props.errorMessage} </h1>
-    //     <button onClick={this.handleOk} > OK I GUESS </button>
-
-    //   </div>)
-    // }
       
       return (
 
-        
-
         <div class="userForm">
           <h1>Login</h1>
-
-          {/* {this.props.errorMessage? <h1> {this.props.errorMessage} </h1> : null } */}
 
           {/* this IS GUARANTEED TO WORK IF BOOTSTRAP FAILS: */}
           {/* <form onSubmit={this.handleFormSubmit}>
