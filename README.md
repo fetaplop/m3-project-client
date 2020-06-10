@@ -150,21 +150,22 @@ Stop model // this is early dev version, updated one on server repo
 
 ## Links
 
-### Trello
+<!-- ### Trello
 
-[Link to trello board](https://trello.com/b/OGpErkbe/m3-project) 
+[Link to trello board](https://trello.com/b/OGpErkbe/m3-project)  -->
 
+Check here my server repo or find the deployed version in Heroku!
 
 ### Git
 
-Check here my server repo or go to deployed version in Heroku!
+[Server repository](https://github.com/fetaplop/m3-project-server)
 
-[Server repository Link](https://github.com/screeeen/project-server)
+### Heroku
 
-[Deployed App Link](http://heroku.com)
+[Deployed App](https://oulu-bus-stops.herokuapp.com/)
 
-### Slides
+<!-- ### Slides
 
-The url to your presentation slides
+Presesentation would be here
 
-[Slides Link](http://slides.com)
+[Slides Link](http://slides.com) -->
