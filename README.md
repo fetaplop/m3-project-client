@@ -13,17 +13,27 @@ Note: there have been some changes to bus stops in Linnanmaa area after seeding 
 
 There is no easy way to run this app since you need to clone both the server (which has its own repo, check the links at the bottom) and the client and then you would need to seed the database. To see how the app works, check the link at the bottom of this readme to find a link to the deployed version instead! Please note that since the platform (Heroku) is free of charge, it might take a little while for the server to wake up and there is nothing I can do about it.
 
-If you are still determined to run this on your machine, here are the steps. I cannot guarantee that these will work on a mac or linux system since I was using Win10 as my dev environment. The instructions are for installing and running the app in Visual Studio Code. Also, you will need MongoDB _running_ so that the database works. The data is from May 2020 but it's already partially deprecated. Anyway, here goes!
+If you are still determined to run this on your machine, go to the server repo and start with those instructions. Now these are for the client end:
 
-- Clone the server repository
+- Make sure you did the steps listed in the server repo and then follow these
+- Clone the client repository
 - run `npm install` in your VS Code terminal (on repository folder root level!)
-- navigate to the folder "bin"
-- run `node seed.js` in your VS Code terminal (if you skip this, there will be no bus stops)
-- navigate back to root level
+- run `npm run start` in your VS Code terminal
+
 - updating the instructions, trying to figure out how to fix .env issue.. nothing will run without the .env file!
 <!-- add .env file and paste inside: REACT_APP_API_URL=http://localhost:5666 -->
-- run `npm startdev` in your VS Code terminal
-- this should be it for the backend, now check the steps for frontend!
+- Now the app should run in local and open in your browser. If not for some reason, open chrome and type in the url `localhost:3000` and hit enter
+
+# How to use the app once it's running (in Heroku or locally)
+
+- On the landing page, type text in the search bar to search for bus stops. Try "Yliopisto" for example.
+- Once you see the results appear, you can click on them to see the bus stop page.
+- Go to "Signup" to create a user profile.
+- Go to "Login" and log in with your credentials
+- After logging in, you land on your page. Here you can find your favourite bus stops if you have any. Click "My page" in the nav bar to navigate here later
+- To add new favourites, go to "Search for stops", find a stop and click on it to see its page
+- On the bus stop page, now you can add the stop to your favourites. You can also unfavourite it.
+- On My Page, you will see your added stops. Click "Delete user" if you want to delete your profile or "Logout" to log out of your profile
 
 ## User Stories
 
@@ -53,7 +63,7 @@ If you are still determined to run this on your machine, here are the steps. I c
 
 # Client / Frontend
 
-## React Router Routes (React App)
+## React Router Routes (React App) (note-to-self check these)
 | Path                      | Component            | Permissions                | Behavior                                                      |
 | ------------------------- | -------------------- | -------------------------- | ------------------------------------------------------------- |
 | `/home`                   | HomePage             | public `<Route>`           | Home page, where any user can search for bus stops            |
@@ -64,34 +74,39 @@ If you are still determined to run this on your machine, here are the steps. I c
 
 
 
-## Components
+## File structure
 
-INSTEAD: FILE STRUCTURE (components, paged¨s)
-tarki8sta pathit
+Where to find the most important React components or services
 
-- LoginPage
+# src/pages
 
-- SignupPage
+- Home.js
 
-- HomePage
+- Login.js
 
-- Search
+- Private.js
 
-- (Results??)
+- Signup.js
 
-- StopLink
+- StopPage.js
 
-- StopPage
+# src/components
 
-- MyFavourites
+- Search.js
 
-- Navbar
+- NavbarComp.js
 
- 
+- PrivateRoute.js
 
-## Services
+- PublicRoute.js
 
-kerro, mit nää on!!
+
+# src/lib
+
+These services are responsible for all the calls to the backend with axios. Auth.js is a HOC (higher-order component) that provides authentication state to all the components that need to know it (the consumers) and it is using auth service to do that.
+
+- Auth HOC
+  - withAuth(WrappedComponent)
 
 - Auth Service
   - auth.login(user)
