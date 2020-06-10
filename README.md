@@ -24,7 +24,7 @@ If you are still determined to run this on your machine, go to the server repo a
 <!-- add .env file and paste inside: REACT_APP_API_URL=http://localhost:5666 -->
 - Now the app should run in local and open in your browser. If not for some reason, open chrome and type in the url `localhost:3000` and hit enter
 
-# How to use the app once it's running (in Heroku or locally)
+## How to use the app once it's running (in Heroku or locally)
 
 - On the landing page, type text in the search bar to search for bus stops. Try "Yliopisto" for example.
 - Once you see the results appear, you can click on them to see the bus stop page.
@@ -67,19 +67,18 @@ If you are still determined to run this on your machine, go to the server repo a
 ## React Router Routes (React App) (note-to-self check these)
 | Path                      | Component            | Permissions                | Behavior                                                      |
 | ------------------------- | -------------------- | -------------------------- | ------------------------------------------------------------- |
-| `/home`                   | HomePage             | public `<Route>`           | Home page, where any user can search for bus stops            |
-| `/home/:stopID`           | StopPage             | public `<Route>`           | Shows specific bus stop info with fave-btn for user only      |
-| `/signup`                 | SignupPage           | anon only `<AnonRoute>`    | Signup form, link to login, navigate to login after signup    |
-| `/login`                  | LoginPage            | anon only `<AnonRoute>`    | Login form, link to signup, navigate to homepage after login  |
-| `/favourites`             | MyPage               | user only `<PrivateRoute>` | Displays list of saved stops                                  |
-
+| `/`                       | Home                 | public `<Route>`           | Home page, where any user can search for bus stops            |
+| `/stops/:stopID`          | StopPage             | public `<Route>`           | Shows specific bus stop info with fave-btn for user only      |
+| `/signup`                 | Signup               | anon only `<AnonRoute>`    | Signup form, link to login, redirect to my page after signup  |
+| `/login`                  | Login                | anon only `<AnonRoute>`    | Login form, redirect to my page after login                   |
+| `/private`                | Private              | user only `<PrivateRoute>` | Displays list of saved stops                                  |
 
 
 ## File structure
 
 Where to find the most important React components or services
 
-# src/pages
+### src/pages
 
 - Home.js
 
@@ -91,7 +90,7 @@ Where to find the most important React components or services
 
 - StopPage.js
 
-# src/components
+### src/components
 
 - Search.js
 
@@ -102,9 +101,9 @@ Where to find the most important React components or services
 - PublicRoute.js
 
 
-# src/lib
+### src/lib
 
-These services are responsible for all the calls to the backend with axios. Auth.js is a HOC (higher-order component) that provides authentication state to all the components that need to know it (the consumers) and it is using auth service to do that.
+These services are responsible for all the calls to the backend using axios. Auth.js is a HOC (higher-order component) that provides authentication state to all the components that need to know it (the consumers) and it is using auth service to do that.
 
 - Authentication HOC in Auth.js
   - withAuth(WrappedComponent)
@@ -127,56 +126,6 @@ These services are responsible for all the calls to the backend with axios. Auth
 
 <br>
 
-# Server / Backend
-
-## Models
-
-User model
-
-
-```javascript
-{
-  username: {type: String, required: true},
-  password: {type: String, required: true},
-  favStops: [{type: mongoose.Schema.Types.ObjectId, ref: "Stop"}]
-}
-```
-
-Stop model // this is early dev version, updated one on server repo
-
-```javascript
- {
-    name: {type: String, required: true},
-    stopId: {type: Number, required: true},
-    stopCode: {type: String, required: true},
-    longitude: {type: Number, required: true},
-    latitude: {type: Number, required: true},
-    busLines: [{type: Number}]
- }
-```
-
-
-<br>
-
-
-## API Endpoints (backend routes)
-
-
-| HTTP Method | URL                         | Request Body              | Success status | Error Status | Description                        |
-| ----------- | --------------------------- | --------------------------| -------------- | ------------ | ---------------------------------- |
-| GET         | `/auth/user `               | Saved session             | 200            | 404          | Check if user is logged in         |
-| POST        | `/auth/signup`              | {username, password}      | 201            | 404          | Checks if fields not empty (422) and user not exists (409), then create user with encrypted password, and store user in session |
-| POST        | `/auth/login`               | {username, password}      | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password matches (404), then stores user in session |
-| POST        | `/auth/logout`              | (empty)                   | 204            | 400          | Logs out the user                    |
-| GET         | `/stops`                    |                           | 200            | 400          | Get all stops from DB                |
-| GET         | `/stops/:id`                | {id}                      | 200            | 400          | Show specific bus stop               |
-| POST        | `/stops/:id/favourite`      | {id}                      | 200            | 400          | Add stop to user favourites array    |
-| POST        | `/stops/:id/unfavourite`    | {id}                      | 200            | 400          | Delete stop from user favourites     |
-| GET         | `/user/favourites`          |                           | 200            | 400          | Show user's favourite bus stops      |
-| DELETE      | `/user/delete`              |                           | 201            | 400          | Delete user                          |
-
-<br>
-
 
 ## Links
 
@@ -184,16 +133,8 @@ Stop model // this is early dev version, updated one on server repo
 
 [Link to trello board](https://trello.com/b/OGpErkbe/m3-project)  -->
 
-Check here my server repo or find the deployed version in Heroku!
-laita linkit osaksi teksti8ä!
+Check here my [server repo on GitHub](https://github.com/fetaplop/m3-project-server) or find the [deployed version in Heroku](https://oulu-bus-stops.herokuapp.com/)
 
-### Git
-
-[Server repository](https://github.com/fetaplop/m3-project-server)
-
-### Heroku
-
-[Deployed App](https://oulu-bus-stops.herokuapp.com/)
 
 <!-- ### Slides
 
