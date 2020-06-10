@@ -1,9 +1,7 @@
 # m3-project-client
 <br>
 
-# Bus arrival info table
-
-<br>
+# Oulu Bus Stops
 
 ## Description
 
