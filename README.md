@@ -11,7 +11,19 @@ Note: there have been some changes to bus stops in Linnanmaa area after seeding 
 
 ## Instructions
 
-You need to clone, do npm install and run both the server and client to run this app in dev mode. To see how the app works, check the link at the bottom of this readme to find a link to the deployed version instead! Please note that since the platform (Heroku) is free of charge, it might take a little while for the server to wake up and there is nothing I can do about it.
+There is no easy way to run this app since you need to clone both the server (which has its own repo, check the links at the bottom) and the client and then you would need to seed the database. To see how the app works, check the link at the bottom of this readme to find a link to the deployed version instead! Please note that since the platform (Heroku) is free of charge, it might take a little while for the server to wake up and there is nothing I can do about it.
+
+If you are still determined to run this on your machine, here are the steps. I cannot guarantee that these will work on a mac or linux system since I was using Win10 as my dev environment. The instructions are for installing and running the app in Visual Studio Code. Also, you will need MongoDB _running_ so that the database works. The data is from May 2020 but it's already partially deprecated. Anyway, here goes!
+
+- Clone the server repository
+- run `npm install` in your VS Code terminal (on repository folder root level!)
+- navigate to the folder "bin"
+- run `node seed.js` in your VS Code terminal (if you skip this, there will be no bus stops)
+- navigate back to root level
+- updating the instructions, trying to figure out how to fix .env issue.. nothing will run without the .env file!
+<!-- add .env file and paste inside: REACT_APP_API_URL=http://localhost:5666 -->
+- run `npm startdev` in your VS Code terminal
+- this should be it for the backend, now check the steps for frontend!
 
 ## User Stories
 
@@ -54,6 +66,9 @@ You need to clone, do npm install and run both the server and client to run this
 
 ## Components
 
+INSTEAD: FILE STRUCTURE (components, paged¨s)
+tarki8sta pathit
+
 - LoginPage
 
 - SignupPage
@@ -75,6 +90,8 @@ You need to clone, do npm install and run both the server and client to run this
  
 
 ## Services
+
+kerro, mit nää on!!
 
 - Auth Service
   - auth.login(user)
@@ -153,6 +170,7 @@ Stop model // this is early dev version, updated one on server repo
 [Link to trello board](https://trello.com/b/OGpErkbe/m3-project)  -->
 
 Check here my server repo or find the deployed version in Heroku!
+laita linkit osaksi teksti8ä!
 
 ### Git
 
