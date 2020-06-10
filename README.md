@@ -7,7 +7,13 @@
 
 ## Description
 
-This is an app that provides all the bus stops within Oulu region. A user can search for bus stops by name.
+This is an app that provides all the bus stops within Oulu region. A user can search for bus stops by name and save stops as their favourites if they're logged-in. 
+
+Note: there have been some changes to bus stops in Linnanmaa area after seeding the app's database (last seeded in late May 2020) so the data is not 100% up-to-date. I will probably reseed after taking some steps to start using live stop monitoring data.
+
+## Instructions
+
+You need to clone, do npm install and run both the server and client to run this app in dev mode. Check the link at the bottom of this readme to find a link to the deployed version instead! Please note that 
 
 ## User Stories
 
@@ -17,10 +23,10 @@ This is an app that provides all the bus stops within Oulu region. A user can se
 -  **Logout:** As a user I can log out
 -  **Favourite bus stops** As a user I can save bus stops to my favourites and also unfavourite them
 -  **View saved bus stops** As a user I can look at all my favourite stops
--  **404:** As an anon/user I can see a 404 page if I try to reach a page that does not exist
 
 ## Backlog
 
+- Reseed DB after recent changes to Linnanmaa but stops!
 - Tap into SIRI stop monitoring data:
 	- Request bus stop information by stop ID using correct GTFS and SIRI formats
 	- Receive data back 
@@ -29,7 +35,8 @@ This is an app that provides all the bus stops within Oulu region. A user can se
 - Display received data continuously on the bus stop page
 - Dark theme (as default)
 - Confirm if user really wants to delete their account to avoid accidents
-- Display error messages in frontend too for bad login/signup requests
+- Display error messages in frontend too for bad login/signup requests !
+- Bug fix for refreshing stop page
 
 <br>
 
@@ -105,7 +112,7 @@ User model
 }
 ```
 
-Stop model
+Stop model // this is early dev version, updated one on server repo
 
 ```javascript
  {
@@ -150,9 +157,7 @@ Stop model
 
 ### Git
 
-The url to your repository and to your deployed project
-
-[Client repository Link](https://github.com/screeeen/project-client)
+Check here my server repo or go to deployed version in Heroku!
 
 [Server repository Link](https://github.com/screeeen/project-server)
 
