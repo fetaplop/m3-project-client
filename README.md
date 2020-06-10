@@ -32,7 +32,7 @@ If you are still determined to run this on your machine, go to the server repo a
 - Go to "Login" and log in with your credentials
 - After logging in, you land on your page. Here you can find your favourite bus stops if you have any. Click "My page" in the nav bar to navigate here later
 - To add new favourites, go to "Search for stops", find a stop and click on it to see its page
-- On the bus stop page, now you can add the stop to your favourites. You can also unfavourite it.
+- On the bus stop page, now you can click the favourite button to add the stop to your favourites. You can also unfavourite it.
 - On My Page, you will see your added stops. Click "Delete user" if you want to delete your profile or "Logout" to log out of your profile
 
 ## User Stories
@@ -57,6 +57,7 @@ If you are still determined to run this on your machine, go to the server repo a
 - Confirm if user really wants to delete their account to avoid accidents
 - Display error messages in frontend too for bad login/signup requests !
 - Bug fix for refreshing stop page
+- Write installation instructions
 
 <br>
 
@@ -105,23 +106,22 @@ Where to find the most important React components or services
 
 These services are responsible for all the calls to the backend with axios. Auth.js is a HOC (higher-order component) that provides authentication state to all the components that need to know it (the consumers) and it is using auth service to do that.
 
-- Auth HOC
+- Authentication HOC in Auth.js
   - withAuth(WrappedComponent)
 
-- Auth Service
+- Auth Service in auth-service.js
   - auth.login(user)
   - auth.signup(user)
   - auth.logout()
   - auth.me()
 
-- Stop Service
+- Stop Service in stop-service.js
   - stop.getAll()
   - stop.getOne(id)
   - stop.save(id)
   - stop.unsave(id)
 
-- User Service
-
+- User Service in user-service.js
   - user.favourites()
   - user.delete()
 

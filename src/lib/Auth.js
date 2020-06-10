@@ -86,7 +86,6 @@ class AuthProvider extends React.Component {
     authService.logout()
       .then(() => {
         this.setState({isLoggedIn: false, isLoading: false, user: null});
-        // can we set other stuff here as well? to fix that after login/logout teh faves show wrong?
       })
       .catch((err) => console.log(err));
   }
