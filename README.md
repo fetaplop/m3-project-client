@@ -11,7 +11,7 @@ Note: there have been some changes to bus stops in Linnanmaa area after seeding 
 
 ## Instructions
 
-You need to clone, do npm install and run both the server and client to run this app in dev mode. Check the link at the bottom of this readme to find a link to the deployed version instead! Please note that 
+You need to clone, do npm install and run both the server and client to run this app in dev mode. To see how the app works, check the link at the bottom of this readme to find a link to the deployed version instead! Please note that since the platform (Heroku) is free of charge, it might take a little while for the server to wake up and there is nothing I can do about it.
 
 ## User Stories
 
