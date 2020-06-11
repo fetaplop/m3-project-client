@@ -18,10 +18,10 @@ If you are still determined to run this on your machine, go to the server repo a
 - Make sure you did the steps listed in the server repo and then follow these
 - Clone the client repository
 - run `npm install`
+- create a new file on root level and name it ```.env```
+- paste inside the following and save it:
+  REACT_APP_API_URL=http://localhost:5666
 - run `npm run start`
-
-- updating the instructions, trying to figure out how to fix .env issue.. nothing will run without the .env file!
-<!-- add .env file and paste inside: REACT_APP_API_URL=http://localhost:5666 -->
 - Now the app should run in local and open in your browser. If not for some reason, open chrome and type in the url `localhost:3000` and hit enter
 
 ## How to use the app once it's running (in Heroku or locally)
