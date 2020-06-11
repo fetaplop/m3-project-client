@@ -11,12 +11,12 @@ Note: there have been some changes to bus stops in Linnanmaa area after seeding 
 
 ## Instructions
 
-There is no easy way to run this app since you need to clone both the server (which has its own repo, check the links at the bottom) and the client and then you would need to seed the database. To see how the app works, go to the [deployed version](https://oulu-bus-stops.herokuapp.com/) instead! Please note that since the platform (Heroku) is free of charge, it might take a little while for the server to wake up.
+In order to run this app locally, you need to clone both the server (which has its own [repo](https://github.com/fetaplop/m3-project-server)) and the client and then you would need to seed the database. To just see how the app works, go to the [deployed version](https://oulu-bus-stops.herokuapp.com/) instead! Please note that since the platform (Heroku) is free of charge, it might take a little while for the server to wake up.
 
 If you are still determined to run this on your machine, go to the server repo and start with those instructions. Now these are for the client end:
 
 - Make sure you did the steps listed in the server repo and then follow these
-- Clone the client repository
+- run `git clone https://github.com/fetaplop/m3-project-client.git` to clone the client repository
 - run `npm install`
 - create a new file on root level and name it ```.env```
 - paste inside the following and save it:
