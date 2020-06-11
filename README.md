@@ -22,7 +22,7 @@ If you are still determined to run this on your machine, go to the server repo a
 - paste inside the following and save it:
 ```REACT_APP_API_URL=http://localhost:5666```
 - run `npm run start`
-- Now the app should run in local and open in your browser. If not for some reason, open chrome and type in the url `localhost:3000` and hit enter
+- Now the app is running in `localhost:3000`
 
 ## How to use the app once it's running (in Heroku or locally)
 
