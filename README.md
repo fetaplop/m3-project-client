@@ -57,7 +57,8 @@ If you are still determined to run this on your machine, go to the server repo a
 - Confirm if user really wants to delete their account to avoid accidents
 - Display error messages in frontend too for bad login/signup requests !
 - Bug fix for refreshing stop page
-- Write installation instructions
+- Show preview on mouse hover for bus stop search results (maybe add "go to stop page" button too?)
+- Write installation instructions (done?)
 
 <br>
 
