@@ -7,7 +7,7 @@
 
 This is an app that provides all the bus stops within Oulu region. A user can search for bus stops by name and save stops as their favourites if they're logged in. 
 
-Note: there have been some changes to bus stops in Linnanmaa area after seeding the app's database (last seeded in late May 2020) so the data is not 100% up-to-date. I will probably reseed after taking some steps to start using live stop monitoring data.
+**Note:** there have been some changes to bus stops in Linnanmaa area after seeding the app's database (last seeded in late May 2020) so the data is not 100% up-to-date. I will probably reseed after taking some steps to start using live stop monitoring data.
 
 ## Instructions
 
@@ -16,13 +16,13 @@ In order to run this app locally, you need to clone both the server (which has i
 If you are still determined to run this on your machine, go to the server repo and start with those instructions. Now these are for the client end:
 
 - Make sure you did the steps listed in the server repo and then follow these
-- run `git clone https://github.com/fetaplop/m3-project-client.git` to clone the client repository
+- clone the client repository by running `git clone https://github.com/fetaplop/m3-project-client.git`
 - run `npm install`
 - create a new file on root level and name it ```.env```
-- paste inside the following and save it:
+- open the new file, paste inside the following and save it:
 ```REACT_APP_API_URL=http://localhost:5666```
 - run `npm run start`
-- Now the app is running in `localhost:3000`
+- Now the app is running in `localhost:3000`!
 
 ## How to use the app once it's running (in Heroku or locally)
 
@@ -65,7 +65,7 @@ If you are still determined to run this on your machine, go to the server repo a
 
 # Client / Frontend
 
-## React Router Routes (React App) (note-to-self check these)
+## React Router Routes (React App)
 | Path                      | Component            | Permissions                | Behavior                                                      |
 | ------------------------- | -------------------- | -------------------------- | ------------------------------------------------------------- |
 | `/`                       | Home                 | public `<Route>`           | Home page, where any user can search for bus stops            |
